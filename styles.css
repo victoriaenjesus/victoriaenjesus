@@ -87,6 +87,16 @@ a {
   font-weight: 700;
 }
 
+.logo-file {
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #fff;
+  flex: 0 0 40px;
+}
+
 .nav-links {
   display: flex;
   gap: 20px;
