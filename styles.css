@@ -88,9 +88,9 @@ a {
 }
 
 .logo-file {
-  width: 140px;
+  width: 84px;
   height: auto;
-  max-width: 36vw;
+  max-width: 24vw;
   display: block;
   object-fit: contain;
   flex: 0 0 auto;
