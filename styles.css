@@ -88,12 +88,12 @@ a {
 }
 
 .logo-file {
-  width: 40px;
-  height: 40px;
+  width: 140px;
+  height: auto;
+  max-width: 36vw;
   display: block;
-  border-radius: 50%;
-  object-fit: cover;
-  flex: 0 0 40px;
+  object-fit: contain;
+  flex: 0 0 auto;
 }
 
 .nav-links {
