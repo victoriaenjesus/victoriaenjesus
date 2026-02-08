@@ -371,56 +371,56 @@
               <h3>Estado financiero 2025</h3>
               <p class="small">Documento de prueba en PDF.</p>
               <div class="actions">
-                <a
+                <button
+                  type="button"
                   class="btn ghost open-pdf"
-                  href="estados-financieros/estado-financiero-2025.pdf"
                   data-pdf="estados-financieros/estado-financiero-2025.pdf"
                   data-title="Estado financiero 2025"
                 >
                   Ver PDF 2025
-                </a>
+                </button>
               </div>
             </article>
             <article class="card">
               <h3>Estado financiero 2024</h3>
               <p class="small">Documento de prueba en PDF.</p>
               <div class="actions">
-                <a
+                <button
+                  type="button"
                   class="btn ghost open-pdf"
-                  href="estados-financieros/estado-financiero-2024.pdf"
                   data-pdf="estados-financieros/estado-financiero-2024.pdf"
                   data-title="Estado financiero 2024"
                 >
                   Ver PDF 2024
-                </a>
+                </button>
               </div>
             </article>
             <article class="card">
               <h3>Estado financiero 2023</h3>
               <p class="small">Documento de prueba en PDF.</p>
               <div class="actions">
-                <a
+                <button
+                  type="button"
                   class="btn ghost open-pdf"
-                  href="estados-financieros/estado-financiero-2023.pdf"
                   data-pdf="estados-financieros/estado-financiero-2023.pdf"
                   data-title="Estado financiero 2023"
                 >
                   Ver PDF 2023
-                </a>
+                </button>
               </div>
             </article>
             <article class="card">
               <h3>Estado financiero 2022</h3>
               <p class="small">Documento de prueba en PDF.</p>
               <div class="actions">
-                <a
+                <button
+                  type="button"
                   class="btn ghost open-pdf"
-                  href="estados-financieros/estado-financiero-2022.pdf"
                   data-pdf="estados-financieros/estado-financiero-2022.pdf"
                   data-title="Estado financiero 2022"
                 >
                   Ver PDF 2022
-                </a>
+                </button>
               </div>
             </article>
           </div>
@@ -521,15 +521,13 @@
           document.body.classList.remove("no-scroll");
         }
 
-        triggers.forEach(function (link) {
-          link.addEventListener("click", function (event) {
-            event.preventDefault();
-            openModal(
-              link.getAttribute("data-pdf") || link.getAttribute("href"),
-              link.getAttribute("data-title")
-            );
-          });
-        });
+        for (var i = 0; i < triggers.length; i++) {
+          (function (link) {
+            link.addEventListener("click", function () {
+              openModal(link.getAttribute("data-pdf"), link.getAttribute("data-title"));
+            });
+          })(triggers[i]);
+        }
 
         closeBtn.addEventListener("click", closeModal);
 
