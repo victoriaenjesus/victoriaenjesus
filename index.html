@@ -372,10 +372,10 @@
               <p class="small">Documento de prueba en PDF.</p>
               <div class="actions">
                 <a
-                  class="btn ghost"
+                  class="btn ghost open-pdf"
                   href="estados-financieros/estado-financiero-2025.pdf"
-                  target="_blank"
-                  rel="noreferrer"
+                  data-pdf="estados-financieros/estado-financiero-2025.pdf"
+                  data-title="Estado financiero 2025"
                 >
                   Ver PDF 2025
                 </a>
@@ -386,10 +386,10 @@
               <p class="small">Documento de prueba en PDF.</p>
               <div class="actions">
                 <a
-                  class="btn ghost"
+                  class="btn ghost open-pdf"
                   href="estados-financieros/estado-financiero-2024.pdf"
-                  target="_blank"
-                  rel="noreferrer"
+                  data-pdf="estados-financieros/estado-financiero-2024.pdf"
+                  data-title="Estado financiero 2024"
                 >
                   Ver PDF 2024
                 </a>
@@ -400,10 +400,10 @@
               <p class="small">Documento de prueba en PDF.</p>
               <div class="actions">
                 <a
-                  class="btn ghost"
+                  class="btn ghost open-pdf"
                   href="estados-financieros/estado-financiero-2023.pdf"
-                  target="_blank"
-                  rel="noreferrer"
+                  data-pdf="estados-financieros/estado-financiero-2023.pdf"
+                  data-title="Estado financiero 2023"
                 >
                   Ver PDF 2023
                 </a>
@@ -414,10 +414,10 @@
               <p class="small">Documento de prueba en PDF.</p>
               <div class="actions">
                 <a
-                  class="btn ghost"
+                  class="btn ghost open-pdf"
                   href="estados-financieros/estado-financiero-2022.pdf"
-                  target="_blank"
-                  rel="noreferrer"
+                  data-pdf="estados-financieros/estado-financiero-2022.pdf"
+                  data-title="Estado financiero 2022"
                 >
                   Ver PDF 2022
                 </a>
@@ -458,6 +458,35 @@
       </section>
     </main>
 
+    <div class="pdf-modal" id="pdf-modal" aria-hidden="true">
+      <div class="pdf-modal-backdrop" data-close-modal></div>
+      <div
+        class="pdf-modal-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="pdf-modal-title"
+      >
+        <div class="pdf-modal-header">
+          <h3 id="pdf-modal-title">Estado financiero</h3>
+          <button
+            type="button"
+            class="pdf-modal-close"
+            id="pdf-modal-close"
+            aria-label="Cerrar"
+          >
+            ×
+          </button>
+        </div>
+        <iframe
+          id="pdf-modal-frame"
+          class="pdf-modal-frame"
+          src=""
+          title="Visor de estados financieros"
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+
     <footer class="footer">
       <div>
         <strong>Fundacion Victoria en Jesus</strong>
@@ -469,5 +498,53 @@
       </div>
       <div class="small">© 2026 FVJ. Todos los derechos reservados.</div>
     </footer>
+    <script>
+      (function () {
+        var modal = document.getElementById("pdf-modal");
+        var frame = document.getElementById("pdf-modal-frame");
+        var title = document.getElementById("pdf-modal-title");
+        var closeBtn = document.getElementById("pdf-modal-close");
+        var triggers = document.querySelectorAll(".open-pdf");
+
+        function openModal(pdfUrl, modalTitle) {
+          frame.src = pdfUrl;
+          title.textContent = modalTitle || "Estado financiero";
+          modal.classList.add("is-open");
+          modal.setAttribute("aria-hidden", "false");
+          document.body.classList.add("no-scroll");
+        }
+
+        function closeModal() {
+          modal.classList.remove("is-open");
+          modal.setAttribute("aria-hidden", "true");
+          frame.src = "";
+          document.body.classList.remove("no-scroll");
+        }
+
+        triggers.forEach(function (link) {
+          link.addEventListener("click", function (event) {
+            event.preventDefault();
+            openModal(
+              link.getAttribute("data-pdf") || link.getAttribute("href"),
+              link.getAttribute("data-title")
+            );
+          });
+        });
+
+        closeBtn.addEventListener("click", closeModal);
+
+        modal.addEventListener("click", function (event) {
+          if (event.target.hasAttribute("data-close-modal")) {
+            closeModal();
+          }
+        });
+
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape" && modal.classList.contains("is-open")) {
+            closeModal();
+          }
+        });
+      })();
+    </script>
   </body>
 </html>
