@@ -231,6 +231,20 @@ h2 {
   color: #f3f7ff;
 }
 
+.qa p {
+  margin: 0 0 14px;
+}
+
+.qa p:last-child {
+  margin-bottom: 0;
+}
+
+.qa strong {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
 .card hr {
   border: none;
   height: 1px;
